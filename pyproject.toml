@@ -4,15 +4,14 @@ version = "0.1.0"
 description = ""
 authors = ["pavelkoA <pavelko88@mail.ru>"]
 readme = "README.md"
-package = [
-    { include = "get_rating" },
-]
+
 
 [tool.poetry.dependencies]
 python = "^3.10"
-requests = "^2.31.0"
+requests = {extras = ["socks"], version = "^2.31.0"}
 bs4 = "^0.0.1"
 lxml = "^4.9.3"
+fake-useragent = "^1.3.0"
 
 
 [build-system]
