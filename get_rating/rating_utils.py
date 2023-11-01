@@ -1,15 +1,15 @@
 import requests
 from bs4 import BeautifulSoup
-from random import choice
-
-from get_rating.headers_and_proxies import headers, proxy_list
+import json
+from get_rating.headers_and_proxies import headers, mob_proxy
+import time
 
 
 def get_requests_hotel_site(link):
     """return requests.text object"""
     hotel_requests = requests.get(link,
                                   headers=headers,
-                                  proxies=choice(proxy_list))
+                                  proxies=mob_proxy)
     return hotel_requests.text
 
 
@@ -40,15 +40,17 @@ def get_travelata_rating(link):
 
 def get_ya_travel_ratting(link):
     """Get hotel rating travelata.ru"""
-    hotel_page_soup = get_hotel_page_soup(link)
-    try:
-        hotel_rating_value = hotel_page_soup.find("div",
-                                                  class_="dSL4m hotelRating").find(
-                                                  "div", class_="E2u8z")
+    for _ in range(10):
+        hotel_page_soup = get_hotel_page_soup(link)
+        hotel_rating_value = hotel_page_soup.find("script", type="application/ld+json")
         if hotel_rating_value:
-            return hotel_rating_value.text
-    except AttributeError:
-        return None
+            rating = json.loads(hotel_rating_value.text)
+            try:
+                return rating["aggregateRating"]["ratingValue"]
+            except KeyError:
+                return "no rating"
+        time.sleep(2)
+    return "no rating"
 
 
 def get_ostrovok_rating(link):
@@ -58,9 +60,3 @@ def get_ostrovok_rating(link):
         "span", class_="TotalRating_content__k5u6S")
     if hotel_rating_value:
         return hotel_rating_value.text
-
-
-# link_ostrovok = "https://ostrovok.ru/hotel/egypt/dahab/mid7858466/acacia_dahab_hotel/"
-# link_ya = "https://travel.yandex.ru/hotels/dahab/acacia-dahab-hotel/"
-# print(get_ya_travel_ratting(link_ya))
-# print(get_ostrovok_rating(link_ostrovok))

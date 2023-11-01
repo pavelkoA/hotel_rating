@@ -22,3 +22,8 @@ proxy3 = {
 
 
 proxy_list = [proxy1, proxy2, proxy3]
+
+mob_proxy = {
+    'https': 'socks5://ec2655940e:29240553fc@188.120.243.158:41566',
+    'http': 'socks5://ec2655940e:29240553fc@188.120.243.158:41566'
+}

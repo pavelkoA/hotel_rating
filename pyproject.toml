@@ -4,6 +4,13 @@ version = "0.1.0"
 description = ""
 authors = ["pavelkoA <pavelko88@mail.ru>"]
 readme = "README.md"
+packages = [
+    { include = "get_rating" }
+]
+
+
+[tool.poetry.scripts]
+rating-collector = "get_rating.scripts.hotel_rating:main"
 
 
 [tool.poetry.dependencies]
