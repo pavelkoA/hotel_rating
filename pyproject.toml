@@ -11,6 +11,7 @@ packages = [
 
 [tool.poetry.scripts]
 rating-collector = "get_rating.scripts.hotel_rating:main"
+rating-test = "test:main"
 
 
 [tool.poetry.dependencies]

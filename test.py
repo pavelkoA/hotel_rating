@@ -4,7 +4,7 @@ from get_rating.rating_utils import get_level_travel_rating
 
 def main():
     hotel_leaveltravel_dict = read_csv_file("get_rating/docs/read_file/leaveltravel.csv")
-    
+
     count = 0
     for hotel in hotel_leaveltravel_dict:
         hotel["rating"] = get_level_travel_rating(hotel["URL"])
