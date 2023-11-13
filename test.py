@@ -1,4 +1,4 @@
-from fake_useragent import UserAgent
+#!/etc/bin python3
 from get_rating.csv_utils import read_csv_file, write_csv_file
 from get_rating.rating_utils import get_level_travel_rating
 
