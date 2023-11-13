@@ -23,7 +23,14 @@ proxy3 = {
 
 proxy_list = [proxy1, proxy2, proxy3]
 
+
+
+# mob_proxy = {
+#     'https': 'socks5://6424679-all-country-RS-state-8199669-city-792680-asn-2885:1b6q4k3y1x@89.39.106.148:13765',
+#     'http': 'socks5://6424679-all-country-RS-state-8199669-city-792680-asn-2885:1b6q4k3y1x@89.39.106.148:13765'
+# }
+
 mob_proxy = {
-    'https': 'socks5://ec2655940e:29240553fc@188.120.243.158:41566',
-    'http': 'socks5://ec2655940e:29240553fc@188.120.243.158:41566'
+    'https': 'socks5://a799b46c4d:475a6e9c6d@88.87.84.141:41413',
+    'http': 'socks5://a799b46c4d:475a6e9c6d@88.87.84.141:41413'
 }

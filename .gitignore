@@ -152,4 +152,3 @@ ENV/
 env.bak/
 venv.bak/
 
-get_rating/docs/*
