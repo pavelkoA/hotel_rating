@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import json
-from get_rating.headers_and_proxies import headers, proxy
+from get_rating.headers_and_proxies import headers, proxy_list
 import time
 import random
 
@@ -10,7 +10,7 @@ def get_requests_hotel_site(link):
     """return requests.text object"""
     hotel_requests = requests.get(link,
                                   headers=headers,
-                                  proxies=proxy)
+                                  proxies=proxy_list)
     return hotel_requests.text
 
 
