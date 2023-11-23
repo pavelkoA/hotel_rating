@@ -37,6 +37,11 @@ proxy3 = {
 }
 
 
+mob_proxy = {
+    'https': 'https://Neuyp6:Ag2DuC9ZaY6a@zproxy.site:12505'
+}
+
+
 proxy_list = [proxy1, proxy2, proxy3]
 
 
@@ -44,7 +49,7 @@ def get_requests_hotel_site(link):
     """return requests.text object"""
     hotel_requests = requests.get(link,
                                   headers=headers,
-                                  proxies=random.choice(proxy_list))
+                                  proxies=mob_proxy)
     return hotel_requests.text
 
 
@@ -72,21 +77,21 @@ def get_ya_travel_ratting(link):
 
 def main():
     hotel_yatravel_dict = read_csv_file("get_rating/docs/read_file/yatravel.csv")
-    with open("get_rating/docs/leaveltravel_rating.csv", "w",
+    with open("get_rating/docs/yatravel_rating.csv", "w",
               encoding="utf-8-sig", newline='') as write_file:
         fieldnames_list = [key for key in hotel_yatravel_dict[0].keys()]
         writer = csv.DictWriter(write_file, fieldnames=fieldnames_list, delimiter=",")
         writer.writeheader()
-    count = 0
-    for hotel in hotel_yatravel_dict:
-        try:
-            hotel["rating"] = get_ya_travel_ratting(hotel["URL"])
-        except:
-            hotel["rating"] = "No rating"
-            time.sleep(1)
-        writer.writerow(hotel)
-        count += 1
-        print(count, hotel)
+        count = 0
+        for hotel in hotel_yatravel_dict:
+            try:
+                hotel["rating"] = get_ya_travel_ratting(hotel["URL"])
+            except:
+                hotel["rating"] = "No rating"
+                time.sleep(1)
+            writer.writerow(hotel)
+            count += 1
+            print(count, hotel)
 
 
 if __name__=="__main__":

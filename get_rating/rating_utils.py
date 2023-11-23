@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup
 import json
 from get_rating.headers_and_proxies import headers, proxy_list
 import time
-import random
 
 
 def get_requests_hotel_site(link):
